@@ -19,7 +19,7 @@ module.exports = function() {
 
     invalidate: function(id, fn) {
       var cache = util.format(format, id);
-      fs.unlink(cache);
+      fs.unlink(cache,fn);
     },
 
     update: function(id, fn) {

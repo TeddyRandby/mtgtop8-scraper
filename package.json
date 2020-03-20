@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^0.15.0",
-    "request": "^2.34.0",
-    "async": "^0.8.0"
+    "async": "^0.8.0",
+    "cheerio": "^0.22.0",
+    "request": "^2.34.0"
   }
 }
