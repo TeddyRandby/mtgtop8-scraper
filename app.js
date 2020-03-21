@@ -1,9 +1,9 @@
 var scrape = require('./scrape');
 var fs = require('fs');
 var ids = [];
-var startid = 24000;
+var startid = 23486;
 var completeCount = 0;
-var total = 26000 
+var total = 24791 
 
 var ignoredIds = fs.readFileSync('./ignore.json');
 

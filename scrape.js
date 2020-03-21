@@ -7,6 +7,7 @@ var ids = [];
 var errors = [];
 var completeCount = 0;
 var total = 1;
+import fire from './fire'
 
 module.exports = function(ids, fn) {
   total = ids.length;
@@ -17,19 +18,32 @@ module.exports = function(ids, fn) {
   });
 };
 
+
 function saveErrors() {
   fs.writeFileSync("./errors.json", JSON.stringify(errors));
 }
 
 function saveResults(id, data, fn) {
   let content;
+  let db = fire.database();
+
   try {
     content = JSON.parse(fs.readFileSync("./results/decks.json", "utf8"));
   } catch (err) {
-    content = {decks:[]}
+    content = {}
   }
-  content.decks.push(data);
+  content[id] = data;
   fs.writeFileSync("./results/decks.json", JSON.stringify(content,null,2), fn);
+  data.cards = {};
+  data.mainboard.forEach(card => {
+    data.cards[card.name] = true;
+  })
+  data.sideboard.forEach(card => {
+    if (!data.cards[card.nam]){
+     data.cards[card.name] = true;
+    }
+  })
+  db.ref('decks').push().set(data)
 }
 
 function processId(id, next) {

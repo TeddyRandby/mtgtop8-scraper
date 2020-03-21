@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "all": "node app.js",
+    "all": "node -r esm app.js",
     "errors": "node errors.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,8 @@
   "dependencies": {
     "async": "^0.8.0",
     "cheerio": "^0.22.0",
+    "esm": "^3.2.25",
+    "firebase": "^7.12.0",
     "request": "^2.34.0"
   }
 }

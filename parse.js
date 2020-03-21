@@ -14,7 +14,7 @@ function isDate(item) {
 
 function getFormatAndDate($, data, fn) {
   var parts = $('td.S14').text().trim().split(' ');
-  data.format = parts[0];
+  data.format = parts[0].toUpperCase();
 
   for (var i = 1; i < parts.length; i++) {
     if (isDate(parts[i].trim())) {
@@ -51,6 +51,7 @@ function getCardsFromSection($, section) {
   section.parent().parent().find('td.G14').each(function(i, elem) {
     var parts = $(this).text().trim().split(/\W+/);
     var card = { count: parts.shift(), name: parts.join(' ') };
+    card.name = card.name.replace(/ s /g,"s-").replace(/ /g,"-").toLowerCase()
     cards.push(card);
   });
 
@@ -68,7 +69,7 @@ function getDeckName($, data, done) {
 
   var parts = deck.split('-');
   if(parts.length > 0) {
-    data.deck = parts[0].trim();
+    data.name = parts[0].trim();
   }
 
   if(parts.length > 1) {
